@@ -1,0 +1,113 @@
+import React from "react";
+import logo from "../../assets/docasnaLoga/arsenal.png";
+import calendarIcon from "../../assets/elements/elements.svg";
+
+export interface PlayedMatchProps {
+  date: string;
+  homeTeam: string;
+  awayTeam: string;
+  homeScore: number;
+  awayScore: number;
+  homeLogo: string;
+  homeMatch: boolean;
+}
+
+function PlayedMatch({
+  date,
+  homeTeam,
+  awayTeam,
+  homeScore,
+  awayScore,
+  homeLogo,
+  homeMatch,
+}: PlayedMatchProps) {
+  return (
+    <div className="flex flex-col p-4 gap-4 border rounded-xl shadow-md bg-white text-cerna">
+      {/* Top Row */}
+      <div className="flex justify-between items-center self-stretch">
+        {/* Left Side */}
+        <div className="flex items-center gap-2">
+          <img
+            src={calendarIcon}
+            alt="date"
+            className="w-4 h-4 object-contain"
+          />
+          <p className="text-center text-[10px] font-normal">{date}</p>
+        </div>
+        {/* Right Side */}
+        <div>
+          <p className="text-center text-[0.625rem] font-normal leading-normal">
+            {homeMatch ? "At Home" : "Away Game"}
+          </p>
+        </div>
+      </div>
+
+      {/* Bottom Row */}
+      {homeMatch ? (
+        <div className="flex justify-between items-center self-stretch">
+          {/* Home Team */}
+          <div className="flex flex-col w-[5.5rem] items-center gap-2">
+            <img
+              src={homeLogo}
+              alt={`${homeTeam} Logo`}
+              className="w-12 h-12 object-cover rounded-full"
+            />
+            <p className="text-center text-[0.9375rem] font-medium">
+              {homeTeam}
+            </p>
+          </div>
+
+          {/* Score */}
+          <div className="text-center text-2xl font-semibold">
+            {homeScore} : {awayScore}
+          </div>
+
+          {/* Away Team */}
+          <div className="flex flex-col w-[5.5rem] items-center gap-2">
+            <img
+              src={logo} // Hardcoded logo
+              alt={`${awayTeam} Logo`}
+              className="w-12 h-12 object-cover rounded-full"
+            />
+            <p className="text-center text-[0.9375rem] font-medium">
+              {awayTeam}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className="flex justify-between items-center self-stretch">
+          {/* Away Team */}
+          <div className="flex flex-col w-[5.5rem] items-center gap-2">
+            <img
+              src={logo} // Hardcoded logo
+              alt={`${awayTeam} Logo`}
+              className="w-12 h-12 object-cover rounded-full"
+            />
+            <p className="text-center text-[0.9375rem] font-medium">
+              {awayTeam}
+            </p>
+          </div>
+
+          {/* Score */}
+          <div className="text-center text-2xl font-semibold">
+            {awayScore} : {homeScore}
+          </div>
+
+          {/* Home Team */}
+          <div className="flex flex-col w-[5.5rem] items-center gap-2">
+            <img
+              src={homeLogo}
+              alt={`${homeTeam} Logo`}
+              className="w-12 h-12 object-cover rounded-full"
+            />
+            <p className="text-center text-[0.9375rem] font-medium">
+              {homeTeam}
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default PlayedMatch;
