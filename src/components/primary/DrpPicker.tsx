@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import down_arrow from "../../assets/elements/arrow-down.svg";
 
-interface DropdownPickerProps {
+export interface DropdownPickerProps {
   defaultValue: string; // Default selected value
   options: string[]; // Array of options
   onSelect: (value: string) => void; // Callback to pass the selected value
+  color?: string; // Optional color for the dropdown text
+  margin?: string;
 }
 
 function DropdownPicker({
   defaultValue,
   options,
   onSelect,
+  color = "text-pickOpn",
+  margin = "mt-3",
 }: DropdownPickerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(defaultValue);
@@ -19,20 +23,19 @@ function DropdownPicker({
     setIsOpen((prev) => !prev);
   };
 
-  const handleOptionClick = (option: string) => {
+  const handleDatePick = (option: string) => {
     setSelected(option);
     setIsOpen(false);
-    onSelect(option); // Pass the selected value to the parent
+    onSelect(option); // Pass the selected value to homescreen
   };
 
   return (
-    <div className="grow text-start mt-5">
-      {/* Dropdown Button */}
+    <div className={`grow text-start ${margin} text-base`}>
       <div
         className="h-5 justify-start items-center gap-0.5 inline-flex cursor-pointer"
         onClick={toggleDropdown}
       >
-        <div className="text-[#56ccf2] text-lg">{selected}</div>
+        <div className={`overflow-hidden ${color}`}>{selected}</div>
         <div className="w-5 h-5 relative">
           <img
             src={down_arrow}
@@ -44,14 +47,14 @@ function DropdownPicker({
         </div>
       </div>
 
-      {/* Dropdown Options */}
+      {/* Dropdown options */}
       {isOpen && (
-        <div className="absolute mt-1 bg-white shadow-lg rounded-lg z-10 w-full">
+        <div className="absolute mt-1 bg-white shadow-lg rounded-lg z-10 overflow-hidden max-w-xs">
           {options.map((option, index) => (
             <div
               key={index}
-              className="text-[#404145] text-[15px] font-normal font-['Roboto'] px-4 py-2 hover:bg-gray-100 cursor-pointer"
-              onClick={() => handleOptionClick(option)}
+              className="text-text2 text-[15px] font-normal font-['Roboto'] px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              onClick={() => handleDatePick(option)}
             >
               {option}
             </div>

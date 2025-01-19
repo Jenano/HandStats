@@ -17,7 +17,7 @@ function MyMatches({
   goalsAgainst,
 }: MatchStatistics) {
   return (
-    <div className="p-4 m-5 max-w-3xl bg-white rounded-2xl flex flex-col justify-center items-start gap-2">
+    <div className="p-4 my-3 max-w-3xl bg-white rounded-2xl flex flex-col justify-center items-start gap-2">
       {/* Header */}
       <div className="self-stretch flex justify-between items-center">
         <div className="text-cerna text-lg font-medium">My Matches</div>

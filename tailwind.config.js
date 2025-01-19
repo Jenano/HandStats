@@ -12,6 +12,7 @@ export default {
         bgCustom: '#F5F7F9',
         text2: '#787878', 
         active: '#1e90ff',
+        pickOpn: '#56ccf2',
       },
 
       fontFamily: {

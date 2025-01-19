@@ -3,8 +3,12 @@ import PlayedMatchesList from "../components/agregate/PlayedMatchesList";
 import MyMatches from "../components/agregate/MyMatches";
 import BTNSelect from "../components/primary/BTNSelect";
 import DropdownPicker from "../components/primary/DrpPicker";
+import DatePicker from "../components/primary/DatePicker";
+import PageTitle from "../components/primary/PageTitle";
+import TeamSelector from "../components/primary/TeamSelector";
+import { DropdownPickerProps } from "../components/primary/DrpPicker";
 
-function Homepage() {
+function Homepage({ defaultValue, options, onSelect }: DropdownPickerProps) {
   const matches = [
     {
       date: "02 Feb, 2024",
@@ -40,17 +44,23 @@ function Homepage() {
     setSelectedOpponent(value); // Update the selected opponent
   };
 
+  const [pickedDate, setPickedDate] = useState<Date | null>(null);
+
+  const handleDateChange = (date: Date) => {
+    setPickedDate(date);
+  };
+
   const pickerOptions = [
     "All Opponents",
     "Opponent A",
-    "Opponent B",
+    "Opponent BddddddddddddddddddddddddBdddddddddddddddddddddddd",
     "Opponent C",
   ];
 
   const [activeButton, setActiveButton] = useState("All");
   useEffect(() => {
-    console.log(activeButton + " " + selectedOpponent);
-  }, [activeButton, selectedOpponent]);
+    console.log(activeButton + " " + selectedOpponent + " " + pickedDate);
+  }, [activeButton, selectedOpponent, pickedDate]);
 
   // Data for MyMatches component
   const myMatchesStats = {
@@ -63,7 +73,14 @@ function Homepage() {
 
   return (
     <>
-      <div className="max-w-3xl p-4 m-5">
+      <div className="max-w-3xl mx-5 mt-5">
+        <TeamSelector
+          defaultValue={defaultValue}
+          options={options}
+          onSelect={onSelect}
+        ></TeamSelector>
+        <PageTitle value="My Matches"></PageTitle>
+
         <div className="h-6 self-stretch flex justify-between items-center">
           <BTNSelect
             active={activeButton === "All"}
@@ -82,15 +99,18 @@ function Homepage() {
           />
         </div>
 
-        <DropdownPicker
-          defaultValue="All Opponents"
-          options={pickerOptions}
-          onSelect={handleOpponentChange}
-        />
-      </div>
+        <div className="px-4">
+          <DatePicker onSelect={handleDateChange}></DatePicker>
+          <DropdownPicker
+            defaultValue="All Opponents"
+            options={pickerOptions}
+            onSelect={handleOpponentChange}
+          />
+        </div>
 
-      <MyMatches {...myMatchesStats} />
-      <PlayedMatchesList matches={matches} />
+        <MyMatches {...myMatchesStats} />
+        <PlayedMatchesList matches={matches} />
+      </div>
     </>
   );
 }
