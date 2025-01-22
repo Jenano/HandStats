@@ -39,7 +39,7 @@ function MatchDetail({ playedMatchData, playerData }: MatchDetailProps) {
           playerData={playerData.filter((player) => player.position !== "GK")}
           goalkeeper={false}
           onClick={function (idHrace: string): void {
-            throw new Error("Function not implemented.");
+            throw new Error(idHrace);
           }}
         />
       </div>
@@ -51,7 +51,7 @@ function MatchDetail({ playedMatchData, playerData }: MatchDetailProps) {
           playerData={playerData.filter((player) => player.position === "GK")}
           goalkeeper={true}
           onClick={function (idHrace: string): void {
-            throw new Error("Function not implemented.");
+            throw new Error(idHrace);
           }}
         />
       </div>

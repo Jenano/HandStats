@@ -1,4 +1,3 @@
-import { useState } from "react";
 import BarItem from "../primary/BarItem";
 import management from "../../assets/elements/management.svg";
 import matches from "../../assets/elements/matches.svg";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PlayedMatchesList from "../components/agregate/PlayedMatchesList";
 import MyMatches from "../components/agregate/MyMatches";
 import BTNSelect from "../components/primary/BTNSelect";

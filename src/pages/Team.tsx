@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PlayerStatTable from "../components/agregate/PlayerStatTable";
 import DropdownPicker from "../components/primary/DrpPicker";
 import BTNSelect from "../components/primary/BTNSelect";

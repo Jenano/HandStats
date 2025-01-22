@@ -1,4 +1,3 @@
-import React from "react";
 import PlayerAllStat from "./PlayerAllStat";
 import { PlayerDetailProps } from "../interfaces/interfaces";
 import PlayedMatchesList from "./PlayedMatchesList";
@@ -29,7 +28,7 @@ function PlayerDetail({ allPlayersDataprops, matches }: PlayerDetailProps) {
       <PlayedMatchesList
         matches={matches}
         onClick={function (idZapasu: string): void {
-          throw new Error("Function not implemented.");
+          throw new Error(idZapasu);
         }}
       />
     </div>
