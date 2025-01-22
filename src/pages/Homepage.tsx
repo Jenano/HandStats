@@ -6,39 +6,18 @@ import DropdownPicker from "../components/primary/DrpPicker";
 import DatePicker from "../components/primary/DatePicker";
 import PageTitle from "../components/primary/PageTitle";
 import TeamSelector from "../components/primary/TeamSelector";
-import { DropdownPickerProps } from "../components/primary/DrpPicker";
+import {
+  DropdownPickerProps,
+  PlayedMatchProps,
+  PlayerData,
+} from "../components/interfaces/interfaces";
+import Header from "../components/primary/Header";
+import PopUp from "../components/agregate/PopUp";
+import MatchDetail from "../components/agregate/MatchDetail";
+
+import { matches, playerData } from "../components/agregate/FictionalData";
 
 function Homepage({ defaultValue, options, onSelect }: DropdownPickerProps) {
-  const matches = [
-    {
-      date: "02 Feb, 2024",
-      homeTeam: "Melvik",
-      awayTeam: "Tubor",
-      homeScore: 32,
-      awayScore: 25,
-      homeLogo: "/path-to-home-logo.png",
-      homeMatch: true,
-    },
-    {
-      date: "10 Jan, 2024",
-      homeTeam: "Arsenal",
-      awayTeam: "West Ham",
-      homeScore: 28,
-      awayScore: 22,
-      homeLogo: "/path-to-arsenal-logo.png",
-      homeMatch: false,
-    },
-    {
-      date: "15 Jan, 2024",
-      homeTeam: "Chelsea",
-      awayTeam: "Liverpool",
-      homeScore: 18,
-      awayScore: 21,
-      homeLogo: "/path-to-chelsea-logo.png",
-      homeMatch: true,
-    },
-  ];
-
   const [selectedOpponent, setSelectedOpponent] = useState("All Opponents");
   const handleOpponentChange = (value: string) => {
     setSelectedOpponent(value); // Update the selected opponent
@@ -57,6 +36,26 @@ function Homepage({ defaultValue, options, onSelect }: DropdownPickerProps) {
     "Opponent C",
   ];
 
+  const [openPopup, setOpenPopup] = useState(false);
+  const [matchDetailData, setMatchDetailData] = useState<{
+    playedMatchData: PlayedMatchProps;
+    playerData: PlayerData[];
+  } | null>(null);
+
+  const handleMatchClick = (idZapasu: string) => {
+    const selectedMatch = matches.find((match) => match.idZapasu === idZapasu);
+    // const najdi hráče ktrí hráli  v zápase
+    if (selectedMatch) {
+      console.log("Selected Match:", selectedMatch);
+      // Pass data to MatchDetail here
+      setMatchDetailData({
+        playedMatchData: selectedMatch,
+        playerData: playerData,
+      });
+    }
+    setOpenPopup(true);
+  };
+
   const [activeButton, setActiveButton] = useState("All");
   useEffect(() => {
     console.log(activeButton + " " + selectedOpponent + " " + pickedDate);
@@ -73,7 +72,21 @@ function Homepage({ defaultValue, options, onSelect }: DropdownPickerProps) {
 
   return (
     <>
-      <div className="max-w-3xl mx-5 mt-5">
+      <Header value="Pepík"></Header>
+      <div className="max-w-3xl mx-5 pt-5 pb-24">
+        <PopUp
+          open={openPopup}
+          children={
+            matchDetailData && (
+              <MatchDetail
+                playedMatchData={matchDetailData.playedMatchData}
+                playerData={matchDetailData.playerData}
+              />
+            )
+          }
+          onClick={() => setOpenPopup(!openPopup)}
+          heading="Match Details"
+        ></PopUp>
         <TeamSelector
           defaultValue={defaultValue}
           options={options}
@@ -109,7 +122,17 @@ function Homepage({ defaultValue, options, onSelect }: DropdownPickerProps) {
         </div>
 
         <MyMatches {...myMatchesStats} />
-        <PlayedMatchesList matches={matches} />
+        <PlayedMatchesList
+          matches={matches}
+          onClick={(idZapasu: string) => handleMatchClick(idZapasu)}
+        />
+
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+          onClick={() => setOpenPopup(!openPopup)}
+        >
+          Open Popup
+        </button>
       </div>
     </>
   );

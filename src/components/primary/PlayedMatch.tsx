@@ -1,16 +1,8 @@
 import React from "react";
 import logo from "../../assets/docasnaLoga/arsenal.png";
 import calendarIcon from "../../assets/elements/elements.svg";
-
-export interface PlayedMatchProps {
-  date: string;
-  homeTeam: string;
-  awayTeam: string;
-  homeScore: number;
-  awayScore: number;
-  homeLogo: string;
-  homeMatch: boolean;
-}
+import { PlayedMatchProps } from "../interfaces/interfaces";
+import PlayerDetailINMatch from "./PlayerDetailINMatch";
 
 function PlayedMatch({
   date,
@@ -20,9 +12,13 @@ function PlayedMatch({
   awayScore,
   homeLogo,
   homeMatch,
+  shadow = "shadow-md border rounded-xl",
+  playerDetail,
+  golas,
+  differenceStat,
 }: PlayedMatchProps) {
   return (
-    <div className="flex flex-col p-4 gap-4 border rounded-xl shadow-md bg-white text-cerna">
+    <div className={`flex flex-col p-4 gap-4  ${shadow} bg-white text-cerna`}>
       {/* Top Row */}
       <div className="flex justify-between items-center self-stretch">
         {/* Left Side */}
@@ -105,6 +101,10 @@ function PlayedMatch({
             </p>
           </div>
         </div>
+      )}
+      {/* Player Detail Section */}
+      {playerDetail && (
+        <PlayerDetailINMatch goals={golas || 0} shots={differenceStat || 0} />
       )}
     </div>
   );

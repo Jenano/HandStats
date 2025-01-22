@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import down_arrow from "../../assets/elements/arrow-down.svg";
-
-export interface DropdownPickerProps {
-  defaultValue: string; // Default selected value
-  options: string[]; // Array of options
-  onSelect: (value: string) => void; // Callback to pass the selected value
-  color?: string; // Optional color for the dropdown text
-  margin?: string;
-}
+import { DropdownPickerProps } from "../interfaces/interfaces";
 
 function DropdownPicker({
   defaultValue,

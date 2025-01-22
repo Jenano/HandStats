@@ -13,6 +13,7 @@ export default {
         text2: '#787878', 
         active: '#1e90ff',
         pickOpn: '#56ccf2',
+        navGray: '#999999'
       },
 
       fontFamily: {
@@ -20,6 +21,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
 }
 

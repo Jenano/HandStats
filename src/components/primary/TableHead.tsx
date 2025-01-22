@@ -1,13 +1,10 @@
 import React from "react";
+import { HeaderProps } from "../interfaces/interfaces";
 
-interface TableHeadProps {
-  label: string;
-}
-
-function TableHead({ label }: TableHeadProps) {
+function TableHead({ value }: HeaderProps) {
   return (
     <th className="px-4 py-2 text-center font-medium text-[#404145]">
-      {label}
+      {value}
     </th>
   );
 }

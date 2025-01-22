@@ -1,8 +1,5 @@
 import React from "react";
-
-interface OneStatDifrProps {
-  rating: number;
-}
+import { OneStatDifrProps } from "../interfaces/interfaces";
 
 function OneStatDifr({ rating }: OneStatDifrProps) {
   // Determine the color based on the rating value

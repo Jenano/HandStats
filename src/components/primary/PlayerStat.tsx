@@ -1,9 +1,5 @@
 import React from "react";
-
-interface PlayerProfileProps {
-  profileImg: string;
-  name: string;
-}
+import { PlayerProfileProps } from "../interfaces/interfaces";
 
 function PlayerStat({ profileImg, name }: PlayerProfileProps) {
   return (

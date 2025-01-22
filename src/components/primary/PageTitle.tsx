@@ -1,10 +1,7 @@
 import React from "react";
+import { HeaderProps } from "../interfaces/interfaces";
 
-interface PageTitleProps {
-  value: string;
-}
-
-function PageTitle({ value }: PageTitleProps) {
+function PageTitle({ value }: HeaderProps) {
   return <div className="text-cerna text-xl font-medium my-5">{value}</div>;
 }
 

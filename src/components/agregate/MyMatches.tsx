@@ -1,13 +1,6 @@
 import React from "react";
 import StatItem from "../primary/StatItem";
-
-interface MatchStatistics {
-  wins: number;
-  draws: number;
-  loses: number;
-  goalsFor: number;
-  goalsAgainst: number;
-}
+import { MatchStatistics } from "../interfaces/interfaces";
 
 function MyMatches({
   wins,
@@ -17,7 +10,7 @@ function MyMatches({
   goalsAgainst,
 }: MatchStatistics) {
   return (
-    <div className="p-4 my-3 max-w-3xl bg-white rounded-2xl flex flex-col justify-center items-start gap-2">
+    <div className="p-4 my-3  bg-white rounded-2xl flex flex-col justify-center items-start gap-2">
       {/* Header */}
       <div className="self-stretch flex justify-between items-center">
         <div className="text-cerna text-lg font-medium">My Matches</div>

@@ -1,20 +1,6 @@
 import React from "react";
 import StatItem from "../primary/StatItem";
-
-export interface AllPlayersDataprops {
-  sixMetersGoals: number; // 6m goals
-  sixMetersShots: number; // 6m shots
-  sevenMetersGoals: number; // 7m goals
-  sevenMetersShots: number; // 7m shots
-  nineMetersGoals: number; // 9m goals
-  nineMetersShots: number; // 9m shots
-  wingGoals: number; // Wing goals
-  wingShots: number; // Wing shots
-  breakGoals: number; // Fast break goals
-  breakShots: number; // Fast break shots
-  technicalfaluts: number;
-  twoMinSusp: twoMinSusp;
-}
+import { AllPlayersDataprops } from "../interfaces/interfaces";
 
 function PlayerAllStat({
   sixMetersGoals,
@@ -29,6 +15,11 @@ function PlayerAllStat({
   breakShots,
   technicalfaluts,
   twoMinSusp,
+  header,
+  playerDetail,
+  matches,
+  differenceDefence,
+  differenceOffence,
 }: AllPlayersDataprops) {
   const goalsTotal: number =
     sixMetersGoals +
@@ -45,7 +36,7 @@ function PlayerAllStat({
 
   function calculateAccuracy(goals: number, shots: number): string {
     if (shots === 0) {
-      return "0%"; // Avoid division by zero
+      return "0%";
     }
     const accuracy = ((goals / shots) * 100).toFixed(1);
     return `${accuracy}%`;
@@ -55,11 +46,23 @@ function PlayerAllStat({
     <div className="p-4 my-3 max-w-3xl bg-white rounded-2xl flex flex-col justify-center items-start gap-2">
       {/* Header */}
       <div className="self-stretch flex justify-between items-center">
-        <div className="text-cerna text-lg font-medium">Total Stats</div>
+        <div className="text-cerna text-lg font-medium">{header}</div>
       </div>
 
       {/* Statistics */}
       <div className="self-stretch flex flex-col justify-start items-start">
+        {/* Conditional StatItem for Matches */}
+        {playerDetail && matches !== undefined && (
+          <div className="self-stretch flex justify-start items-start gap-4">
+            <StatItem
+              label="Matches"
+              value={matches}
+              color="text-cerna"
+              bold={true}
+            />
+          </div>
+        )}
+
         {/* Row One */}
         <div className="self-stretch flex justify-start items-start gap-4">
           <StatItem
@@ -198,14 +201,38 @@ function PlayerAllStat({
         </div>
 
         {/* Row Seven */}
-        <div className="self-stretch flex justify-start items-start gap-4">
-          <StatItem
-            label="Technical Faluts"
-            value={technicalfaluts}
-            color="text-[#f62d2d]"
-            bold={true}
-          />
-        </div>
+        {/* Conditional StatItem for Matches */}
+        {!playerDetail && technicalfaluts !== undefined && (
+          <div className="self-stretch flex justify-start items-start gap-4">
+            <StatItem
+              label="Technical Faluts"
+              value={technicalfaluts}
+              color="text-[#f62d2d]"
+              bold={true}
+            />
+          </div>
+        )}
+
+        {/* Conditional StatItem for Matches */}
+        {playerDetail &&
+          differenceOffence !== undefined &&
+          differenceDefence !== undefined && (
+            <div className="self-stretch flex justify-start items-start gap-4">
+              <StatItem
+                label="Offence +-"
+                value={differenceOffence}
+                color="text-cerna"
+                bold={true}
+              />
+              <StatItem
+                label="Defence +-"
+                value={differenceDefence}
+                color="text-cerna"
+                bold={true}
+              />
+            </div>
+          )}
+
         {/* Row Seven */}
         <div className="self-stretch flex justify-start items-start gap-4">
           <StatItem

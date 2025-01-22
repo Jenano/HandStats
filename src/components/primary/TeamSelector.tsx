@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import plusIcon from "../../assets/elements/plus.svg";
 import DropdownPicker from "./DrpPicker";
-import { DropdownPickerProps } from "./DrpPicker";
+import { DropdownPickerProps } from "../interfaces/interfaces";
 
 function TeamSelector({
   defaultValue,

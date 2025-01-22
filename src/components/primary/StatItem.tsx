@@ -1,11 +1,5 @@
 import React from "react";
-
-interface StatItemProps {
-  label: string; // nazev statistiky
-  value: string | number; // hodnota statistiky
-  color: string; //barva statistiky
-  bold?: boolean;
-}
+import { StatItemProps } from "../interfaces/interfaces";
 
 function StatItem({ label, value, color, bold }: StatItemProps) {
   return (

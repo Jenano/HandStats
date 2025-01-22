@@ -1,9 +1,5 @@
 import React from "react";
-
-interface OneStatSlashProps {
-  goals: string;
-  shots: string;
-}
+import { OneStatSlashProps } from "../interfaces/interfaces";
 
 function OneStatSlash({ goals, shots }: OneStatSlashProps) {
   return (

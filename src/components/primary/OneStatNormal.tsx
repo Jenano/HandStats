@@ -1,11 +1,7 @@
 import React from "react";
+import { HeaderProps } from "../interfaces/interfaces";
 
-// Define the interface
-export interface OneStatProps {
-  value: string;
-}
-
-function OneStat({ value }: OneStatProps) {
+function OneStat({ value }: HeaderProps) {
   return (
     <div className="text-center flex items-center justify-center text-text2 text-base">
       {value}

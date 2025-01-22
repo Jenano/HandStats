@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import DatePickerLib from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import { DatePickerProps } from "../interfaces/interfaces";
 import calendarIcon from "../../assets/elements/elements.svg";
-
-interface DatePickerProps {
-  onSelect: (value: Date) => void;
-}
 
 function DatePicker({ onSelect }: DatePickerProps) {
   const [selected, setSelected] = useState<Date | null>(null);
@@ -26,7 +22,7 @@ function DatePicker({ onSelect }: DatePickerProps) {
   const today = new Date(); // today date
 
   return (
-    <div className="grow text-starts mt-5 text-base">
+    <div className="grow text-starts mt-6 text-base">
       <div
         className="flex items-center gap-2 cursor-pointer"
         onClick={toggleDropdown}

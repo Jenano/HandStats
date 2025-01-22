@@ -1,24 +1,26 @@
 import React from "react";
-import PlayedMatch, { PlayedMatchProps } from "../primary/PlayedMatch";
+import PlayedMatch from "../primary/PlayedMatch";
+import { PlayedMatchesListProps } from "../interfaces/interfaces";
 
-interface PlayedMatchesListProps {
-  matches: PlayedMatchProps[];
-}
-
-function PlayedMatchesList({ matches }: PlayedMatchesListProps) {
+function PlayedMatchesList({ matches, onClick }: PlayedMatchesListProps) {
   return (
     <div className="flex flex-col gap-2">
       {matches.map((match, index) => (
-        <PlayedMatch
+        <div
           key={index}
-          date={match.date}
-          homeTeam={match.homeTeam}
-          awayTeam={match.awayTeam}
-          homeScore={match.homeScore}
-          awayScore={match.awayScore}
-          homeLogo={match.homeLogo}
-          homeMatch={match.homeMatch}
-        />
+          onClick={() => onClick(match.idZapasu)} // Pass the match ID to the handler
+        >
+          <PlayedMatch
+            idZapasu={match.idZapasu}
+            date={match.date}
+            homeTeam={match.homeTeam}
+            awayTeam={match.awayTeam}
+            homeScore={match.homeScore}
+            awayScore={match.awayScore}
+            homeLogo={match.homeLogo}
+            homeMatch={match.homeMatch}
+          />
+        </div>
       ))}
     </div>
   );
