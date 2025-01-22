@@ -1,4 +1,3 @@
-import React from "react";
 import PlayedMatch from "../primary/PlayedMatch";
 import PlayerStatTable from "./PlayerStatTable";
 import { MatchDetailProps } from "../interfaces/interfaces";
@@ -39,6 +38,9 @@ function MatchDetail({ playedMatchData, playerData }: MatchDetailProps) {
         <PlayerStatTable
           playerData={playerData.filter((player) => player.position !== "GK")}
           goalkeeper={false}
+          onClick={function (idHrace: string): void {
+            throw new Error("Function not implemented.");
+          }}
         />
       </div>
 
@@ -48,6 +50,9 @@ function MatchDetail({ playedMatchData, playerData }: MatchDetailProps) {
         <PlayerStatTable
           playerData={playerData.filter((player) => player.position === "GK")}
           goalkeeper={true}
+          onClick={function (idHrace: string): void {
+            throw new Error("Function not implemented.");
+          }}
         />
       </div>
     </div>

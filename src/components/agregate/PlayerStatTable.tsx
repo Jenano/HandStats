@@ -1,4 +1,3 @@
-import React from "react";
 import PlayerStat from "../primary/PlayerStat";
 import OneStat from "../primary/OneStatNormal";
 import OneStatSlash from "../primary/OneStatSlash";

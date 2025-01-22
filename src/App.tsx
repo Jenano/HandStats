@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Teampage from "./pages/Team";
 import Homepage from "./pages/Homepage";
 import NavBar from "./components/agregate/NavBar";

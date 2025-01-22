@@ -1,4 +1,3 @@
-import React from "react";
 import { HeaderProps } from "../interfaces/interfaces";
 
 function PageTitle({ value }: HeaderProps) {

@@ -1,4 +1,3 @@
-import React from "react";
 import { StatItemProps } from "../interfaces/interfaces";
 
 function StatItem({ label, value, color, bold }: StatItemProps) {

@@ -1,4 +1,3 @@
-import React from "react";
 import DetailHeader from "../primary/DetailHeader";
 import { PopUpProps } from "../interfaces/interfaces";
 

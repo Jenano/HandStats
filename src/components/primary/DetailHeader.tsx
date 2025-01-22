@@ -1,4 +1,3 @@
-import React from "react";
 import pracovniLogo from "../../assets/elements/pracovniLogo.webp";
 import arrowLeft from "../../assets/elements/arrow-left.svg";
 import { DetailHeaderProps } from "../interfaces/interfaces";

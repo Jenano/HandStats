@@ -1,5 +1,3 @@
-import React from "react";
-import logo from "../../assets/docasnaLoga/arsenal.png";
 import calendarIcon from "../../assets/elements/elements.svg";
 import { PlayedMatchProps } from "../interfaces/interfaces";
 import PlayerDetailINMatch from "./PlayerDetailINMatch";

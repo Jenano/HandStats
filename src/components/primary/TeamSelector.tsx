@@ -1,4 +1,3 @@
-import React from "react";
 import plusIcon from "../../assets/elements/plus.svg";
 import DropdownPicker from "./DrpPicker";
 import { DropdownPickerProps } from "../interfaces/interfaces";

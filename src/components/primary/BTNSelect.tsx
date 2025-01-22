@@ -1,4 +1,3 @@
-import React from "react";
 import { BTNSelectProps } from "../interfaces/interfaces";
 
 function BTNSelect({ active, onClick, label }: BTNSelectProps) {

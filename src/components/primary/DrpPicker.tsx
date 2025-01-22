@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import down_arrow from "../../assets/elements/arrow-down.svg";
 import { DropdownPickerProps } from "../interfaces/interfaces";
 

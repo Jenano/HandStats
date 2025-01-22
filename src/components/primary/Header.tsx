@@ -1,4 +1,3 @@
-import React from "react";
 import welcomeBackImg from "../../assets/elements/welcomeBack.png";
 import pracovniLogo from "../../assets/elements/pracovniLogo.webp";
 import { HeaderProps } from "../interfaces/interfaces";

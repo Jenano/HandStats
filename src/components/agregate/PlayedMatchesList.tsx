@@ -1,4 +1,3 @@
-import React from "react";
 import PlayedMatch from "../primary/PlayedMatch";
 import { PlayedMatchesListProps } from "../interfaces/interfaces";
 

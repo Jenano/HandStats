@@ -1,4 +1,3 @@
-import React from "react";
 import StatItem from "../primary/StatItem";
 import { AllPlayersDataprops } from "../interfaces/interfaces";
 

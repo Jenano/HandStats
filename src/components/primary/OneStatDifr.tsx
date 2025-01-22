@@ -1,4 +1,3 @@
-import React from "react";
 import { OneStatDifrProps } from "../interfaces/interfaces";
 
 function OneStatDifr({ rating }: OneStatDifrProps) {

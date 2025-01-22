@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import BarItem from "../primary/BarItem";
 import management from "../../assets/elements/management.svg";
 import matches from "../../assets/elements/matches.svg";
-import play from "../../assets/elements/play.svg";
+//import play from "../../assets/elements/play.svg";
 import team from "../../assets/elements/team.svg";
 
 function NavBar() {
