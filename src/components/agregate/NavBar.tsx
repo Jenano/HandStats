@@ -13,8 +13,9 @@ function NavBar() {
         <BarItem to="/" label="Matches" icon={matches} />
         {/* Team */}
         <BarItem to="/team" label="Team" icon={team} />
-        {/* Play */}
+        {/* Play 
         <BarItem to="/play" label="Play" icon={play} />
+        */}
         {/* Management */}
         <BarItem to="/management" label="Management" icon={management} />
       </ul>

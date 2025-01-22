@@ -6,17 +6,34 @@ import NavBar from "./components/agregate/NavBar";
 import Play from "./pages/Play";
 import Management from "./pages/Management";
 import { Route, Routes } from "react-router-dom";
+import { tymyData } from "./db/dbData";
 
 function App() {
-  const [selectedTeam, setSelectedTeam] = useState("A-team");
-  const teamOptions = ["A-team", "N-team", "Q-team", "E-team", "D-team"];
+  const loggedUser: string = "jan.novak@email.com";
+
+  const populateTeamOptions = () => {
+    const filteredTeams = tymyData.filter((team) => team.email === loggedUser);
+    const teamNames = filteredTeams.map((team) => team.tymJmeno);
+    setTeamOptions(teamNames);
+
+    if (teamNames.length > 0) {
+      setSelectedTeam(teamNames[0]);
+      console.log(teamNames[0]);
+    }
+  };
+  const [selectedTeam, setSelectedTeam] = useState("Select Team");
+  const [teamOptions, setTeamOptions] = useState<string[]>([]);
+  useEffect(() => {
+    populateTeamOptions();
+    console.log(loggedUser);
+  }, [loggedUser]);
 
   const handleTeamChange = (value: string) => {
     setSelectedTeam(value);
   };
 
   useEffect(() => {
-    console.log(selectedTeam);
+    console.log("Selected Team:", selectedTeam);
   }, [selectedTeam]);
 
   return (
@@ -29,6 +46,7 @@ function App() {
               defaultValue={selectedTeam}
               options={teamOptions}
               onSelect={handleTeamChange}
+              signedUser={loggedUser}
             />
           }
         />
@@ -40,6 +58,7 @@ function App() {
               defaultValue={selectedTeam}
               options={teamOptions}
               onSelect={handleTeamChange}
+              signedUser={loggedUser}
             />
           }
         />

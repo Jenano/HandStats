@@ -13,11 +13,12 @@ function PlayedMatchesList({ matches, onClick }: PlayedMatchesListProps) {
           <PlayedMatch
             idZapasu={match.idZapasu}
             date={match.date}
-            homeTeam={match.homeTeam}
+            myTeam={match.myTeam}
             awayTeam={match.awayTeam}
             homeScore={match.homeScore}
             awayScore={match.awayScore}
-            homeLogo={match.homeLogo}
+            myLogo={match.myLogo}
+            awayLogo={match.awayLogo}
             homeMatch={match.homeMatch}
           />
         </div>

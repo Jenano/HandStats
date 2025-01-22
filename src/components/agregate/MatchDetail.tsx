@@ -10,11 +10,12 @@ function MatchDetail({ playedMatchData, playerData }: MatchDetailProps) {
       <PlayedMatch
         idZapasu={playedMatchData.idZapasu}
         date={playedMatchData.date}
-        homeTeam={playedMatchData.homeTeam}
+        myTeam={playedMatchData.myTeam}
         awayTeam={playedMatchData.awayTeam}
         homeScore={playedMatchData.homeScore}
         awayScore={playedMatchData.awayScore}
-        homeLogo={playedMatchData.homeLogo}
+        myLogo={playedMatchData.myLogo}
+        awayLogo={playedMatchData.awayLogo}
         homeMatch={playedMatchData.homeMatch}
         shadow="border-t"
       />

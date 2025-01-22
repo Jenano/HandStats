@@ -14,23 +14,53 @@ import {
 import Header from "../components/primary/Header";
 import PopUp from "../components/agregate/PopUp";
 import PlayerDetail from "../components/agregate/PlayerDetail";
-import { playerData, matches } from "../components/agregate/FictionalData";
 
-function Team({ defaultValue, options, onSelect }: DropdownPickerProps) {
-  const allPlayersStats: AllPlayersDataprops = {
-    sixMetersGoals: 100,
-    sixMetersShots: 150,
-    sevenMetersGoals: 50,
-    sevenMetersShots: 70,
-    nineMetersGoals: 80,
-    nineMetersShots: 120,
-    wingGoals: 60,
-    wingShots: 90,
-    breakGoals: 40,
-    breakShots: 50,
-    technicalfaluts: 15,
-    twoMinSusp: 5,
-  };
+import {
+  createFictionalAllPlayersStats,
+  createFictionalPlayersByFilter,
+  getFictionalMatchesArrayPrepless,
+} from "../db/DbHnadler";
+
+function Team({
+  defaultValue,
+  options,
+  onSelect,
+  signedUser,
+}: DropdownPickerProps) {
+  const [allPlayersStats, setAllPlayersStats] = useState<AllPlayersDataprops>({
+    sixMetersGoals: 0,
+    sixMetersShots: 0,
+    sevenMetersGoals: 0,
+    sevenMetersShots: 0,
+    nineMetersGoals: 0,
+    nineMetersShots: 0,
+    wingGoals: 0,
+    wingShots: 0,
+    breakGoals: 0,
+    breakShots: 0,
+    technicalfaluts: 0,
+    twoMinSusp: 0,
+    differenceOffence: 0,
+    differenceDefence: 0,
+  });
+
+  const [playerdataDeatail, setPlayerdataDeatail] =
+    useState<AllPlayersDataprops>({
+      sixMetersGoals: 0,
+      sixMetersShots: 0,
+      sevenMetersGoals: 0,
+      sevenMetersShots: 0,
+      nineMetersGoals: 0,
+      nineMetersShots: 0,
+      wingGoals: 0,
+      wingShots: 0,
+      breakGoals: 0,
+      breakShots: 0,
+      technicalfaluts: 0,
+      twoMinSusp: 0,
+      differenceOffence: 0,
+      differenceDefence: 0,
+    });
 
   const [selectedPostition, setSelectedPostition] = useState("All Positions");
   const handlePostionChange = (value: string) => {
@@ -46,6 +76,9 @@ function Team({ defaultValue, options, onSelect }: DropdownPickerProps) {
     setActiveButton(label);
     setSelectedPostition(label === "Players" ? "All Positions" : "GK");
   };
+
+  const [playerData, setPlayerData] = useState<PlayerData[]>([]);
+  const [matches, setMatches] = useState<PlayedMatchProps[]>([]);
 
   const [openPopup, setOpenPopup] = useState(false);
 
@@ -72,39 +105,33 @@ function Team({ defaultValue, options, onSelect }: DropdownPickerProps) {
 
   useEffect(() => {
     console.log(activeButton + " " + selectedPostition + " " + selectedOrder);
-  }, [activeButton, selectedOrder, selectedPostition]);
+    const fiteredPlayers = createFictionalPlayersByFilter(
+      `${activeButton} ${selectedPostition} ${selectedOrder}`
+    );
+    const result = getFictionalMatchesArrayPrepless();
+    const teamStats = createFictionalAllPlayersStats();
+    const playerStats = createFictionalAllPlayersStats();
+    setMatches(result);
+    setPlayerData(fiteredPlayers);
+    setAllPlayersStats(teamStats);
+    setPlayerdataDeatail(playerStats);
+  }, [activeButton, selectedOrder, selectedPostition, defaultValue]);
 
   //Toto už se nemění <- harddoded
   const positonOptions = ["All Positions", "LW", "RW", "LB", "RB", "CB", "LP"];
 
   const orderOptions =
-    activeButton === "Players"
-      ? [
-          "Jersey Number",
-          "Matches Played",
-          "Goals",
-          "Shots",
-          "Shot Accuracy",
-          "Offence +-",
-          "Defence +-",
-        ]
-      : [
-          "Jersey Number",
-          "Matches Played",
-          "Saves",
-          "Shots Faced",
-          "Save Accuracy",
-        ];
+    activeButton === "Players" ? ["Goals", "Shots"] : ["Saves", "Shots"];
   return (
     <>
-      <Header value="Pepík"></Header>
+      <Header value={signedUser || " "}></Header>
       <div className="mx-5 pt-5 pb-24">
         <PopUp
           open={openPopup}
           children={
             <PlayerDetail
-              allPlayersDataprops={allPlayersStats}
-              matches={matches}
+              allPlayersDataprops={playerdataDeatail}
+              matches={playerDetailData?.playedMatchData || []}
             />
           }
           onClick={() => setOpenPopup(!openPopup)}
@@ -149,7 +176,7 @@ function Team({ defaultValue, options, onSelect }: DropdownPickerProps) {
 
             {/* Dropdown Picker */}
             <DropdownPicker
-              defaultValue="Jersey Number"
+              defaultValue="Golas"
               options={orderOptions}
               onSelect={handleOrderChange}
             />
@@ -161,13 +188,6 @@ function Team({ defaultValue, options, onSelect }: DropdownPickerProps) {
           onClick={(idHrace: string) => handleMatchClick(idHrace)}
         ></PlayerStatTable>
       </div>
-
-      <button
-        className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-        onClick={() => setOpenPopup(!openPopup)}
-      >
-        Open Popup
-      </button>
     </>
   );
 }

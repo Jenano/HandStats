@@ -6,16 +6,17 @@ import PlayerDetailINMatch from "./PlayerDetailINMatch";
 
 function PlayedMatch({
   date,
-  homeTeam,
+  myTeam,
   awayTeam,
   homeScore,
   awayScore,
-  homeLogo,
+  myLogo,
   homeMatch,
   shadow = "shadow-md border rounded-xl",
   playerDetail,
   golas,
   differenceStat,
+  awayLogo,
 }: PlayedMatchProps) {
   return (
     <div className={`flex flex-col p-4 gap-4  ${shadow} bg-white text-cerna`}>
@@ -44,13 +45,11 @@ function PlayedMatch({
           {/* Home Team */}
           <div className="flex flex-col w-[5.5rem] items-center gap-2">
             <img
-              src={homeLogo}
-              alt={`${homeTeam} Logo`}
+              src={myLogo}
+              alt={`${myTeam} Logo`}
               className="w-12 h-12 object-cover rounded-full"
             />
-            <p className="text-center text-[0.9375rem] font-medium">
-              {homeTeam}
-            </p>
+            <p className="text-center text-[0.9375rem] font-medium">{myTeam}</p>
           </div>
 
           {/* Score */}
@@ -61,7 +60,7 @@ function PlayedMatch({
           {/* Away Team */}
           <div className="flex flex-col w-[5.5rem] items-center gap-2">
             <img
-              src={logo} // Hardcoded logo
+              src={awayLogo}
               alt={`${awayTeam} Logo`}
               className="w-12 h-12 object-cover rounded-full"
             />
@@ -75,7 +74,7 @@ function PlayedMatch({
           {/* Away Team */}
           <div className="flex flex-col w-[5.5rem] items-center gap-2">
             <img
-              src={logo} // Hardcoded logo
+              src={awayLogo}
               alt={`${awayTeam} Logo`}
               className="w-12 h-12 object-cover rounded-full"
             />
@@ -92,13 +91,11 @@ function PlayedMatch({
           {/* Home Team */}
           <div className="flex flex-col w-[5.5rem] items-center gap-2">
             <img
-              src={homeLogo}
-              alt={`${homeTeam} Logo`}
+              src={myLogo}
+              alt={`${myTeam} Logo`}
               className="w-12 h-12 object-cover rounded-full"
             />
-            <p className="text-center text-[0.9375rem] font-medium">
-              {homeTeam}
-            </p>
+            <p className="text-center text-[0.9375rem] font-medium">{myTeam}</p>
           </div>
         </div>
       )}

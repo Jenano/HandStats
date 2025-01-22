@@ -105,6 +105,7 @@ export interface DropdownPickerProps {
   onSelect: (value: string) => void; // Callback to pass the selected value
   color?: string; // Optional color for the dropdown text
   margin?: string;
+  signedUser?: string;
 }
 
 export interface HeaderProps {
@@ -123,11 +124,12 @@ export interface OneStatSlashProps {
 export interface PlayedMatchProps {
   date: string;
   idZapasu: string;
-  homeTeam: string;
+  myTeam: string;
   awayTeam: string;
   homeScore: number;
   awayScore: number;
-  homeLogo: string;
+  myLogo: string;
+  awayLogo: string;
   homeMatch: boolean;
   shadow?: string;
   notes?: string;

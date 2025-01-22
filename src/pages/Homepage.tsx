@@ -10,14 +10,28 @@ import {
   DropdownPickerProps,
   PlayedMatchProps,
   PlayerData,
+  MatchStatistics,
 } from "../components/interfaces/interfaces";
 import Header from "../components/primary/Header";
 import PopUp from "../components/agregate/PopUp";
 import MatchDetail from "../components/agregate/MatchDetail";
 
-import { matches, playerData } from "../components/agregate/FictionalData";
+import {
+  getFictionalMatchesArray,
+  getFictionalMatchStatistics,
+  createFictionalPlayers,
+} from "../db/DbHnadler";
 
-function Homepage({ defaultValue, options, onSelect }: DropdownPickerProps) {
+function Homepage({
+  defaultValue,
+  options,
+  onSelect,
+  signedUser,
+}: DropdownPickerProps) {
+  const [myMatchesStats, setMyMatchesStats] = useState<MatchStatistics>();
+  const [playerData, setPlayerData] = useState<PlayerData[]>();
+  const [matches, setMatches] = useState<PlayedMatchProps[]>([]);
+
   const [selectedOpponent, setSelectedOpponent] = useState("All Opponents");
   const handleOpponentChange = (value: string) => {
     setSelectedOpponent(value); // Update the selected opponent
@@ -31,9 +45,10 @@ function Homepage({ defaultValue, options, onSelect }: DropdownPickerProps) {
 
   const pickerOptions = [
     "All Opponents",
-    "Opponent A",
-    "Opponent BddddddddddddddddddddddddBdddddddddddddddddddddddd",
-    "Opponent C",
+    "Slavia Prague",
+    "Sparta",
+    "Brno",
+    "Ostrava",
   ];
 
   const [openPopup, setOpenPopup] = useState(false);
@@ -50,7 +65,7 @@ function Homepage({ defaultValue, options, onSelect }: DropdownPickerProps) {
       // Pass data to MatchDetail here
       setMatchDetailData({
         playedMatchData: selectedMatch,
-        playerData: playerData,
+        playerData: playerData || [],
       });
     }
     setOpenPopup(true);
@@ -58,21 +73,37 @@ function Homepage({ defaultValue, options, onSelect }: DropdownPickerProps) {
 
   const [activeButton, setActiveButton] = useState("All");
   useEffect(() => {
-    console.log(activeButton + " " + selectedOpponent + " " + pickedDate);
+    console.log(
+      activeButton +
+        " " +
+        selectedOpponent +
+        " " +
+        pickedDate +
+        " " +
+        defaultValue
+    );
+    const result = getFictionalMatchesArray(
+      5,
+      activeButton,
+      selectedOpponent,
+      pickedDate,
+      defaultValue
+    );
+    const matchStats = getFictionalMatchStatistics(
+      activeButton,
+      selectedOpponent,
+      pickedDate,
+      defaultValue
+    );
+    const playInfo = createFictionalPlayers();
+    setMatches(result);
+    setMyMatchesStats(matchStats);
+    setPlayerData(playInfo);
   }, [activeButton, selectedOpponent, pickedDate]);
-
-  // Data for MyMatches component
-  const myMatchesStats = {
-    wins: 8,
-    draws: 1,
-    loses: 1,
-    goalsFor: 200,
-    goalsAgainst: 140,
-  };
 
   return (
     <>
-      <Header value="Pepík"></Header>
+      <Header value={signedUser || " "}></Header>
       <div className="max-w-3xl mx-5 pt-5 pb-24">
         <PopUp
           open={openPopup}
@@ -121,18 +152,19 @@ function Homepage({ defaultValue, options, onSelect }: DropdownPickerProps) {
           />
         </div>
 
-        <MyMatches {...myMatchesStats} />
+        <MyMatches
+          {...(myMatchesStats || {
+            wins: 0,
+            draws: 0,
+            loses: 0,
+            goalsFor: 0,
+            goalsAgainst: 0,
+          })}
+        />
         <PlayedMatchesList
           matches={matches}
           onClick={(idZapasu: string) => handleMatchClick(idZapasu)}
         />
-
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-          onClick={() => setOpenPopup(!openPopup)}
-        >
-          Open Popup
-        </button>
       </div>
     </>
   );

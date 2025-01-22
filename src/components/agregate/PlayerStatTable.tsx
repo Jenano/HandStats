@@ -25,7 +25,7 @@ function PlayerStatTable({
             <TableHead value="Position" />
             <TableHead value="Matches Played" />
             <TableHead value={goalkeeper ? "Saves" : "Goals"} />
-            <TableHead value={goalkeeper ? "Shots Faced" : "Goals"} />
+            <TableHead value={goalkeeper ? "Shots Faced" : "Shots"} />
             <TableHead value="Assists" />
             <TableHead value={goalkeeper ? "Save Accuracy" : "Shot Accuracy"} />
             <TableHead value="6m" />
