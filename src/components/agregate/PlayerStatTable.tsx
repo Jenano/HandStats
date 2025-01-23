@@ -16,7 +16,7 @@ function PlayerStatTable({
         {/* Table Header */}
         <thead>
           <tr>
-            {/* Sticky Name Column */}
+            {/* Sticky */}
             <th className="sticky left-0 bg-white px-4 py-2 text-start font-medium w-36 text-cerna">
               Players
             </th>

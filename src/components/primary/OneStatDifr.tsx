@@ -1,7 +1,7 @@
 import { OneStatDifrProps } from "../interfaces/interfaces";
 
 function OneStatDifr({ rating }: OneStatDifrProps) {
-  // Determine the color based on the rating value
+  // color based on the rating value
   const getColor = (): string => {
     if (rating < 0) return "#f62d2d";
     if (rating >= 0 && rating <= 5) return "var(--text2, #787878)";

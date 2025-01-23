@@ -28,7 +28,7 @@ function PlayerDetail({ allPlayersDataprops, matches }: PlayerDetailProps) {
       <PlayedMatchesList
         matches={matches}
         onClick={function (idZapasu: string): void {
-          throw new Error(idZapasu);
+          throw new Error(idZapasu + "detail teto funkce není iplmemntován");
         }}
       />
     </div>

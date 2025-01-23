@@ -5,10 +5,6 @@ import { DetailHeaderProps } from "../interfaces/interfaces";
 function DetailHeader({ heading, onClick }: DetailHeaderProps) {
   return (
     <div className="max-w-3xl bg-white flex justify-between items-center p-4 rounded-t-xl">
-      {/* Left Section */}
-
-      {/* Profile Picture */}
-      {/* Arrow Back Button */}
       <div
         onClick={onClick}
         className="h-11 p-2.5 bg-bgCustom rounded-full flex justify-center items-center gap-2.5"
