@@ -1,5 +1,5 @@
 import BarItem from "../primary/BarItem";
-import management from "../../assets/elements/management.svg";
+//import management from "../../assets/elements/management.svg";
 import matches from "../../assets/elements/matches.svg";
 //import play from "../../assets/elements/play.svg";
 import team from "../../assets/elements/team.svg";
@@ -15,8 +15,9 @@ function NavBar() {
         {/* Play 
         <BarItem to="/play" label="Play" icon={play} />
         */}
-        {/* Management */}
+        {/* Management 
         <BarItem to="/management" label="Management" icon={management} />
+        */}
       </ul>
     </div>
   );

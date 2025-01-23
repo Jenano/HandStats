@@ -47,6 +47,24 @@ export const tymyData: ITym[] = [
     rocnick: "2023",
   },
   {
+    idTymu: "T11",
+    email: uzivateleData[0].email,
+    tymJmeno: "Muži - B",
+    rocnick: "2023",
+  },
+  {
+    idTymu: "T12",
+    email: uzivateleData[0].email,
+    tymJmeno: "St. žáci - B",
+    rocnick: "2023",
+  },
+  {
+    idTymu: "T16",
+    email: uzivateleData[0].email,
+    tymJmeno: "St. žáci - A",
+    rocnick: "2023",
+  },
+  {
     idTymu: "T3",
     email: uzivateleData[1].email,
     tymJmeno: "Mladší žáci",

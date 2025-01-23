@@ -10,6 +10,16 @@ import myTeamLogo from "../assets/docasnaLoga/myTeamLogo.png";
 import opoopnetLogo from "../assets/docasnaLoga/opoopnetLogo.png";
 import p3 from "../assets/docasnaLoga/p3.png";
 
+export const localData = {
+  set(key: string, value: string) {
+    localStorage.setItem(key, JSON.stringify(value));
+  },
+  get(key: string) {
+    const stored = localStorage.getItem(key);
+    return stored == null ? undefined : JSON.parse(stored);
+  },
+};
+
 // Function to generate a single fictional match
 export const getFictionalPlayedMatch = (
   activeButton: string,

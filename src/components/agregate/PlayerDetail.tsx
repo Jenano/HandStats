@@ -4,7 +4,7 @@ import PlayedMatchesList from "./PlayedMatchesList";
 
 function PlayerDetail({ allPlayersDataprops, matches }: PlayerDetailProps) {
   return (
-    <div className="max-h-screen overflow-y-auto pb-40 scrollbar-none ">
+    <div className="max-h-screen overflow-y-auto pb-40 scrollbar-none px-2">
       {/* PlayerAllStat */}
       <PlayerAllStat
         sixMetersGoals={allPlayersDataprops.sixMetersGoals}

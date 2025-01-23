@@ -7,21 +7,19 @@ import Play from "./pages/Play";
 import Management from "./pages/Management";
 import { Route, Routes } from "react-router-dom";
 import { tymyData } from "./db/dbData";
+import { localData } from "./db/DbHnadler";
 
 function App() {
   const loggedUser: string = "jan.novak@email.com";
+
+  const teamStrorage = () => String(localData.get("teamStrorage")) || "";
 
   const populateTeamOptions = () => {
     const filteredTeams = tymyData.filter((team) => team.email === loggedUser);
     const teamNames = filteredTeams.map((team) => team.tymJmeno);
     setTeamOptions(teamNames);
-
-    if (teamNames.length > 0) {
-      setSelectedTeam(teamNames[0]);
-      console.log(teamNames[0]);
-    }
   };
-  const [selectedTeam, setSelectedTeam] = useState("Select Team");
+  const [selectedTeam, setSelectedTeam] = useState(teamStrorage);
   const [teamOptions, setTeamOptions] = useState<string[]>([]);
   useEffect(() => {
     populateTeamOptions();
@@ -34,6 +32,7 @@ function App() {
 
   useEffect(() => {
     console.log("Selected Team:", selectedTeam);
+    localData.set("teamStrorage", selectedTeam);
   }, [selectedTeam]);
 
   return (
